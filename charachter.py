@@ -5,7 +5,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import sys, random
 
 from key_notifier import KeyNotifier
-
+isJumping = 0
 
 class Charachter(QLabel):
 
@@ -36,14 +36,18 @@ class Charachter(QLabel):
         rec1 = self.geometry()
 
         if key == Qt.Key_Right:
-            self.setGeometry(rec1.x() + 5, rec1.y(), rec1.width(), rec1.height())
+            if(rec1.x() < 1115):
+                self.setPixmap(self.pix1.scaled(100, 100))
+                self.setGeometry(rec1.x() + 5, rec1.y(), rec1.width(), rec1.height())
         elif key == Qt.Key_Down:
             self.setGeometry(rec1.x(), rec1.y() + 5, rec1.width(), rec1.height())
         elif key == Qt.Key_Up:
             self.setGeometry(rec1.x(), rec1.y() - 5, rec1.width(), rec1.height())
 
         elif key == Qt.Key_Left:
-            self.setGeometry(rec1.x() - 5, rec1.y(), rec1.width(), rec1.height())
+            if(rec1.x() > 65):
+                self.setPixmap(self.pix1.scaled(100, 100).transformed((QtGui.QTransform().scale(-1, 1))))
+                self.setGeometry(rec1.x() - 5, rec1.y(), rec1.width(), rec1.height())
 
     def closeEvent(self, event):
         self.key_notifier.die()
