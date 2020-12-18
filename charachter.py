@@ -7,6 +7,7 @@ import sys, random, time
 from key_notifier import KeyNotifier
 from playerstate import PlayerState
 
+
 class Charachter(QLabel):
 
     def __init__(self, parent):
@@ -47,7 +48,7 @@ class Charachter(QLabel):
             if(time.time() - self.time  > 1):
                 self.jump.isJumping = True
                 self.jump.dragance = self
-                self.time = time.time();
+                self.time = time.time()
 
         if key == Qt.Key_Left:
             if (rec1.x() > 65 and self.jump.isJumping == False):
@@ -56,6 +57,7 @@ class Charachter(QLabel):
             elif(rec1.x() > 65 and self.jump.isJumping == True):
                 self.setPixmap(self.pix1.scaled(100, 100).transformed((QtGui.QTransform().scale(-1, 1))))
                 self.jump.movingLeft = True
+
 
     def closeEvent(self, event):
         self.key_notifier.die()
