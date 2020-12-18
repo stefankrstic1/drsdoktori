@@ -33,7 +33,7 @@ class PlayerState(QObject):
         while not self.is_done:
             if(self.isJumping == True):
                 self.rec1 = self.dragance.geometry()
-                while self.jumpCount < 40:
+                while self.jumpCount < 40 :
                     #ako se pomera i levo da pomeri i tamo
                     if(self.movingLeft == True):
                         self.dragance.setGeometry(self.rec1.x() - 5, self.rec1.y(), self.rec1.width(),

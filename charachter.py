@@ -23,7 +23,6 @@ class Charachter(QLabel):
 
 
     def initChar(self):
-
         self.pix1 = QPixmap('dragan.png')
         self.setPixmap(self.pix1.scaled(100, 100))
         self.setGeometry(200, 820, 100, 100)
@@ -45,7 +44,7 @@ class Charachter(QLabel):
 
         if key == Qt.Key_Up:
             #promenuti if da bude provera da li je na platformi a ne vreme
-            if(time.time() - self.time  > 1):
+            if(rec1.y() > 200 and time.time() - self.time  > 1):
                 self.jump.isJumping = True
                 self.jump.dragance = self
                 self.time = time.time()
