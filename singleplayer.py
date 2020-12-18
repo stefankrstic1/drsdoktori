@@ -7,6 +7,7 @@ import sys, random
 from charachter import Charachter
 from key_notifier import KeyNotifier
 
+global label1
 
 class SinglePlayer(QWidget):
     def __init__(self):
@@ -25,11 +26,7 @@ class SinglePlayer(QWidget):
 
         self.setStyleSheet("background-image: url(stageglavni.png)")
 
-
-
-
     def keyPressEvent(self, event):
-        self.vx, self.vy = 0, 0
         self.key_notifier.add_key(event.key())
 
     def keyReleaseEvent(self, event):

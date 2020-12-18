@@ -55,12 +55,6 @@ class UI(QtWidgets.QWidget):
 
         self.stack1.setLayout(layout)
 
-
-
-
-    def SingleplayerUI(self):
-        self.stack2.setStyleSheet("background: red")
-
     def MultiplayerUI(self):
         self.stack3.setStyleSheet("background: blue")
 

@@ -1,7 +1,6 @@
-from PyQt5.QtCore import QThread, QObject, pyqtSignal, pyqtSlot
+from PyQt5.QtCore import QThread, QObject, pyqtSignal, pyqtSlot, Qt
 
 import time
-
 
 class KeyNotifier(QObject):
 
@@ -32,6 +31,7 @@ class KeyNotifier(QObject):
     def rem_key(self, key):
         self.keys.remove(key)
 
+
     def die(self):
         """
         End notifications.
@@ -47,4 +47,4 @@ class KeyNotifier(QObject):
         while not self.is_done:
             for k in self.keys:
                 self.key_signal.emit(k)
-            time.sleep(0.00001)
+            time.sleep(0.001)
