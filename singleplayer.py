@@ -6,13 +6,14 @@ import sys, random
 
 from charachter import Charachter
 from key_notifier import KeyNotifier
-
+from bullet import Bullet
 global label1
-
+global label2
 class SinglePlayer(QWidget):
     def __init__(self):
         super().__init__()
         self.label1 = Charachter(self)
+        self.label2 = Bullet(self)
         self.initPrso()
 
     def initPrso(self):
@@ -20,6 +21,7 @@ class SinglePlayer(QWidget):
 
         self.key_notifier = KeyNotifier()
         self.key_notifier.key_signal.connect(self.label1.__update_position__)
+        self.key_notifier.key_signal.connect(self.label2.__update_position__)
         self.key_notifier.start()
 
         self.label1.setStyleSheet("background-image: url()")
