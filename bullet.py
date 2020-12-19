@@ -4,7 +4,7 @@ from PyQt5.QtCore import QSize, Qt, QThread
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys, random, time
 from key_notifier import KeyNotifier
-from playerstate import PlayerState
+from playerstate import State
 from charachter import Charachter
 
 
