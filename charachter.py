@@ -58,7 +58,7 @@ class Charachter(QLabel):
             elif(rec1.x() > 65 and (self.jump.isJumping == True or self.jump.isFalling == True)):
                 self.setPixmap(self.pix1.scaled(100, 100).transformed((QtGui.QTransform().scale(-1, 1))))
                 self.jump.movingLeft = True
-
+#komentar
 
     def closeEvent(self, event):
         self.key_notifier.die()
