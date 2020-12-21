@@ -4,7 +4,9 @@ from PyQt5.QtCore import QSize, Qt, QThread, QObject
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys, random, time
 
-Platforms = [[820, 65, 1115], [640, 110, 250]]
+Platforms = [[820, 65, 1115], [640, 110, 250], [640, 525, 675], [640, 940, 1080],
+             [455, 235, 945], [270, 105, 255], [270, 525, 675], [270, 940, 1080],
+             [85, 250, 395], [85, 805, 949]]
 
 class State(QObject):
     isJumping = False
@@ -34,6 +36,7 @@ class State(QObject):
         for x in Platforms:
             if(self.rec1.y() == x[0] and self.rec1.x() > x[1] and self.rec1.x() < x[2]):
                 self.onPlatform = True
+                break
             else:
                 self.onPlatform = False
 

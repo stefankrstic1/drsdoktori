@@ -11,7 +11,7 @@ from charachter import Charachter
 class Bullet(QLabel):
     def __init__(self, parent):
         QLabel.__init__(self, parent)
-        self.resize(30,30)
+        self.resize(115,60)
         self.initBullet()
 
 
@@ -20,6 +20,7 @@ class Bullet(QLabel):
         rec1 = character.geometry()
         self.pix2 = QPixmap('bullet.png')
         self.setPixmap(self.pix2.scaled(30, 30))
+        self.setStyleSheet("background-image: url()")
         self.setGeometry(rec1.x() + 100 , rec1.y() + 20 , 30, 30)
         self.setFixedSize(30, 30)
 

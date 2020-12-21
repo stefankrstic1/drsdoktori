@@ -45,8 +45,10 @@ class Charachter(QLabel):
 
         if key == Qt.Key_Up:
             #promenuti if da bude provera da li je na platformi a ne vreme
-                self.jump.isJumping = True
-                self.jump.dragance = self
+                if((time.time() - self.time) > 1.4):
+                    self.jump.isJumping = True
+                    self.jump.dragance = self
+                    self.time = time.time()
 
 
         if key == Qt.Key_Left:
