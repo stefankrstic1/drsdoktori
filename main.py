@@ -27,7 +27,7 @@ class BubbleBobble(QMainWindow, UI):
 
     def initUI(self):
         self.setGeometry(0, 0, 1280, 960)
-        self.setWindowTitle('BubbleBobble')
+        self.setWindowTitle('Slike/BubbleBobble')
         self.setWindowIcon(QIcon('bb.jpg'))
         self.setFixedSize(1280,960)
         self.setCentralWidget(self.StackedWidgets)

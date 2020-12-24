@@ -33,12 +33,7 @@ class KeyNotifier(QObject):
         self.keys.remove(key)
 
 
-    def die(self):
-        """
-        End notifications.
-        """
-        self.is_done = True
-        self.thread.quit()
+
 
     @pyqtSlot()
     def __work__(self):

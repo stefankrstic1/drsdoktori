@@ -15,18 +15,19 @@ class SinglePlayer(QWidget):
         self.label1 = Charachter(self)
         self.label2 = Bullet(self)
         self.initPrso()
-
+        self.label2.dragance = self.label1
+        self.label1.bullet = self.label2
     def initPrso(self):
         self.setAttribute(QtCore.Qt.WA_StyledBackground, True)
 
         self.key_notifier = KeyNotifier()
         self.key_notifier.key_signal.connect(self.label1.__update_position__)
-        self.key_notifier.key_signal.connect(self.label2.__update_position__)
+       # self.key_notifier.key_signal.connect(self.label2.__update_position__z)
         self.key_notifier.start()
 
         self.label1.setStyleSheet("background-image: url()")
 
-        self.setStyleSheet("background-image: url(stageglavni.png)")
+        self.setStyleSheet("background-image: url(Slike/stageglavni.png)")
 
     def keyPressEvent(self, event):
         self.key_notifier.add_key(event.key())

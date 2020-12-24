@@ -17,7 +17,7 @@ class UI(QtWidgets.QWidget):
 
         stack2 = SinglePlayer()
         self.MenuUI()
-        #self.SingleplayerUI()
+
         self.MultiplayerUI()
 
         self.StackedWidgets.addWidget(self.stack1)
@@ -29,13 +29,13 @@ class UI(QtWidgets.QWidget):
 
         layout = QVBoxLayout()
 
-        oImage = QImage("pozadina.jpg")
+        oImage = QImage("Slike/pozadina.jpg")
         sImage = oImage.scaled(QSize(1280, 960))  # resize Image to widgets size
         palette = QPalette()
         palette.setBrush(QPalette.Window, QBrush(sImage))
         self.setPalette(palette)
 
-        self.btn = QPushButton(self.stack1)
+        self.btn = QPushButton('SINGLEPLAYER',self.stack1)
         self.btn1 = QPushButton('MULTIPLAYER', self.stack1)
         self.btn2 = QPushButton('OPTIONS', self.stack1)
         self.btn3 = QPushButton('EXIT', self.stack1)

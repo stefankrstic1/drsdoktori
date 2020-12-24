@@ -1,30 +1,32 @@
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QIcon, QPixmap, QImage, QPalette, QBrush
-from PyQt5.QtCore import QSize, Qt, QThread, QObject
-from PyQt5 import QtCore, QtGui, QtWidgets
-import sys, random, time
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtCore import QThread, QObject
+from PyQt5 import QtGui, QtWidgets
+import time
 
-Platforms = [[820, 65, 1115], [640, 110, 250], [640, 525, 675], [640, 940, 1080],
+import variables
+
+Platforms = [[820, 55, 1120], [640, 110, 250], [640, 525, 675], [640, 940, 1080],
              [455, 235, 945], [270, 105, 255], [270, 525, 675], [270, 940, 1080],
              [85, 250, 395], [85, 805, 949]]
+
+movingLeft = False
+movingRight = False
 
 class State(QObject):
     isJumping = False
     movingLeft = False
     movingRight = False
     isFalling = False
-    onPlatform = False
+    onPlatform = True
     jumpCount = 0
-    dragance = QLabel
-    positionX, positionY = 0, 0
 
     def __init__(self):
         super().__init__()
         self.thread = QThread()
         self.is_done = False
-
         self.moveToThread(self.thread)
-
+        self.pix1 = QPixmap('Slike/dragan.png')
         self.thread.started.connect(self.check)
         #self.checkOnPlatform()
 
@@ -32,65 +34,88 @@ class State(QObject):
         self.thread.start()
 
     def checkOnPlatform(self):
-        self.rec1 = self.dragance.geometry()
+        self.rec1 = [variables.x, variables.y]
         for x in Platforms:
-            if(self.rec1.y() == x[0] and self.rec1.x() > x[1] and self.rec1.x() < x[2]):
+            if(self.rec1[1] == x[0] and self.rec1[0] > x[1] and self.rec1[0] < x[2]):
                 self.onPlatform = True
+                self.isFalling = False
                 break
             else:
                 self.onPlatform = False
+                self.isFalling = True
 
 
     def check(self):
-        global Platforms
-        #rec1 = dragan.geometry()
+        self.pix1 = QPixmap('Slike/dragan.png')
         while not self.is_done:
-            #self.checkOnPlatform()
-            if(self.isJumping == True):
-                self.rec1 = self.dragance.geometry()
-                while self.jumpCount < 40 :
+            if(self.isJumping == True and self.onPlatform == True):
+                while self.jumpCount < 40 and variables.y > 20:
                     #ako se pomera i levo da pomeri i tamo
-                    if(self.movingLeft == True):
-                        self.dragance.setGeometry(self.rec1.x() - 5, self.rec1.y(), self.rec1.width(),
-                                                  self.rec1.height())
-                        self.rec1 = self.dragance.geometry()
+                    if(self.movingLeft == True and variables.x > 65):
+                        variables.levo = True
+                        #self.dragance.setPixmap(self.pix1.scaled(100, 100).transformed((QtGui.QTransform().scale(-1, 1))))
+                        variables.x -= 5
+                        #self.dragance.move(self.dragance.x() - 5, self.dragance.y())
                         self.movingLeft = False
                     #ako se pomera i desno da pomeri i tamo
-                    if(self.movingRight == True):
-                        self.dragance.setGeometry(self.rec1.x() + 5, self.rec1.y() , self.rec1.width(),
-                                                  self.rec1.height())
-                        self.rec1 = self.dragance.geometry()
+                    if(self.movingRight == True and variables.x < 1115):
+                        variables.levo = False
+                        #self.dragance.setPixmap(self.pix1.scaled(100, 100))
+                        variables.x +=5
+                        #self.dragance.move(self.dragance.x() + 5, self.dragance.y())
                         self.movingRight = False
-                    self.dragance.setGeometry(self.rec1.x(), self.rec1.y() - 5, self.rec1.width(), self.rec1.height())
+                    variables.y -= 5
+                    #self.dragance.move(self.rec1.x(), self.rec1.y() - 5)
                     self.jumpCount += 1
-                    self.rec1 = self.dragance.geometry()
                     self.thread.msleep(1)
                 self.isJumping = False
                 self.jumpCount = 0
                 self.isFalling = True
                 self.onPlatform = False
-            elif((self.isFalling == True and self.onPlatform == False) or (self.isFalling == False and self.onPlatform == True)):
-                self.checkOnPlatform()
-                self.rec1 = self.dragance.geometry()
-                while self.rec1.y() < 820 and self.onPlatform == False:
-                    if (self.movingLeft == True):
-                        self.dragance.setGeometry(self.rec1.x() - 5, self.rec1.y(), self.rec1.width(),
-                                                  self.rec1.height())
-                        self.rec1 = self.dragance.geometry()
+            elif(self.isFalling == True):
+                #self.rec1 = self.dragance.geometry()
+                while self.onPlatform == False:
+                    if (self.movingLeft == True and variables.x > 65):
+                        variables.levo = True
+                        #self.dragance.setPixmap(self.pix1.scaled(100, 100).transformed((QtGui.QTransform().scale(-1, 1))))
+                        variables.x -= 5
+                        #self.dragance.move(self.rec1.x() - 5, self.rec1.y())
+                        #self.rec1 = self.dragance.geometry()
                         self.movingLeft = False
                         # ako se pomera i desno da pomeri i tamo
-                    if (self.movingRight == True):
-                        self.dragance.setGeometry(self.rec1.x() + 5, self.rec1.y(), self.rec1.width(),
-                                                  self.rec1.height())
-                        self.rec1 = self.dragance.geometry()
+                    if (self.movingRight == True and variables.x < 1115):
+                        variables.levo = False
+                        #self.dragance.setPixmap(self.pix1.scaled(100, 100))
+                        variables.x += 5
+                        #self.dragance.move(self.rec1.x() + 5, self.rec1.y())
+                        #self.rec1 = self.dragance.geometry()
                         self.movingRight = False
-                    self.dragance.setGeometry(self.rec1.x(), self.rec1.y() + 5, self.rec1.width(), self.rec1.height())
-                    self.rec1 = self.dragance.geometry()
+                    variables.y += 5
+                    #self.dragance.move(self.rec1.x(), self.rec1.y() + 5)
+                    #self.rec1 = self.dragance.geometry()
                     self.thread.msleep(1)
                     self.checkOnPlatform()
                 self.isFalling = False
+            elif (self.onPlatform == True and self.movingRight == True and variables.x < 1115):
+                #self.rec1 = self.dragance.geometry()
+                variables.levo = False
+                #self.dragance.setPixmap(self.pix1.scaled(100, 100))
+                variables.x += 5
+                #self.dragance.move(self.dragance.x() + 5, self.dragance.y())
+                self.checkOnPlatform()
+                self.movingRight = False
 
-            time.sleep(0.001)
+            elif (self.onPlatform == True and self.movingLeft == True and variables.x > 65):
+                #self.rec1 = self.dragance.geometry()
+                variables.levo = True
+                #self.dragance.setPixmap(self.pix1.scaled(100, 100).transformed((QtGui.QTransform().scale(-1, 1))))
+                variables.x -= 5
+                #self.dragance.move(self.dragance.x() - 5, self.dragance.y())
+                self.checkOnPlatform()
+                self.movingLeft = False
+            #self.dragance.update()
+            time.sleep(0.01)
+
 
     def kill(self):
         self.is_done = True
