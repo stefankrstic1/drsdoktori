@@ -2,21 +2,28 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIcon, QPixmap, QImage, QPalette, QBrush
 from PyQt5.QtCore import QSize, Qt
 from PyQt5 import QtCore, QtGui, QtWidgets
-import sys, random
+import sys, random, variables
 
 from charachter import Charachter
 from key_notifier import KeyNotifier
 from bullet import Bullet
+from enemy import Enemy
 global label1
 global label2
+
 class SinglePlayer(QWidget):
     def __init__(self):
         super().__init__()
         self.label1 = Charachter(self)
         self.label2 = Bullet(self)
+        self.enemyLabel1 = Enemy(self, variables.pozicijaPrvog)
+        self.enemyLabel2 = Enemy(self, variables.pozicijaDrugog)
+        self.enemyLabel3 = Enemy(self, variables.pozicijaTreceg)
+        self.enemyLabel4 = Enemy(self, variables.pozicijaCetvrtog)
         self.initPrso()
         self.label2.dragance = self.label1
         self.label1.bullet = self.label2
+
     def initPrso(self):
         self.setAttribute(QtCore.Qt.WA_StyledBackground, True)
 
