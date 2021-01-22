@@ -38,6 +38,19 @@ class Charachter(QLabel):
             self.setPixmap(self.pix1.scaled(100, 100).transformed((QtGui.QTransform().scale(-1, 1))))
         else:
             self.setPixmap(self.pix1.scaled(100, 100))
+
+        if variables.draganUbijen == True:
+            variables.x = 200
+            variables.y = 820
+            variables.draganUbijen = False
+            variables.Pogodjen = [False, False, False, False]
+            variables.Pokupio = [False, False, False, False]
+            variables.CurrentPosition = [[0, 0], [0, 0], [0, 0], [0, 0]]
+            variables.trenutnaPozicijaEnemy = [variables.pocetnaPozicijaPrvog, variables.pocetnaPozicijaDrugog, variables.pocetnaPozicijaTreceg, variables.pocetnaPozicijaCetvrtog]
+            variables.aliveEnemy = 4
+            variables.deadEnemy = 0
+            variables.collectedEnemy = 0
+
     def __update_position__(self, key):
         if key == Qt.Key_Space:
             if self.bullet.shoot.ableToFire == True:

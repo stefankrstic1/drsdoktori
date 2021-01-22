@@ -22,10 +22,21 @@ level = 1
 speed = 6
 mass = 1
 
-pozicijaPrvog = [600, 450]
-pozicijaDrugog = [600, 260]
-pozicijaTreceg = [300, 80]
-pozicijaCetvrtog = [900, 80]
+pocetnaPozicijaPrvog = [600, 450]
+pocetnaPozicijaDrugog = [600, 260]
+pocetnaPozicijaTreceg = [300, 80]
+pocetnaPozicijaCetvrtog = [900, 80]
 
-allEnemy = [[]]
-allHitEnemy = []
+trenutnaPozicijaEnemy = [[600, 450], [600, 260], [300, 80], [900, 80]]
+
+CurrentPosition = [[0, 0], [0, 0], [0, 0], [0, 0]]
+
+Pogodjen = [False, False, False, False]
+
+Pokupio = [False, False, False, False]
+
+aliveEnemy = 4
+deadEnemy = 0
+collectedEnemy = 0
+
+draganUbijen = False

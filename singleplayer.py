@@ -16,10 +16,10 @@ class SinglePlayer(QWidget):
         super().__init__()
         self.label1 = Charachter(self)
         self.label2 = Bullet(self)
-        self.enemyLabel1 = Enemy(self, variables.pozicijaPrvog)
-        self.enemyLabel2 = Enemy(self, variables.pozicijaDrugog)
-        self.enemyLabel3 = Enemy(self, variables.pozicijaTreceg)
-        self.enemyLabel4 = Enemy(self, variables.pozicijaCetvrtog)
+        self.enemyLabel1 = Enemy(self, variables.pocetnaPozicijaPrvog, 0)
+        self.enemyLabel2 = Enemy(self, variables.pocetnaPozicijaDrugog, 1)
+        self.enemyLabel3 = Enemy(self, variables.pocetnaPozicijaTreceg, 2)
+        self.enemyLabel4 = Enemy(self, variables.pocetnaPozicijaCetvrtog, 3)
         self.initPrso()
         self.label2.dragance = self.label1
         self.label1.bullet = self.label2
