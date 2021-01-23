@@ -3,6 +3,7 @@ from PyQt5.QtGui import QIcon, QPixmap, QImage, QPalette, QBrush
 from PyQt5.QtCore import QSize
 from PyQt5 import QtCore, QtGui
 import sys, random
+import winsound
 
 from menu import UI
 
@@ -18,6 +19,8 @@ class BubbleBobble(QMainWindow, UI):
 
     def openSinglePlay(self):
         self.StackedWidgets.setCurrentIndex(1)
+        filename = 'resources/bgm/muzika.wav'
+        winsound.PlaySound(filename, winsound.SND_ASYNC)
 
     def openMultiPlay(self):
         self.StackedWidgets.setCurrentIndex(2)

@@ -40,6 +40,8 @@ class UI(QtWidgets.QWidget):
         self.btn2 = QPushButton('OPTIONS', self.stack1)
         self.btn3 = QPushButton('EXIT', self.stack1)
 
+
+
         #promeniti sliku za dugme!!!!!!!!!!!!
         self.btn.setStyleSheet("border-image: url(dugme1.png)")
 

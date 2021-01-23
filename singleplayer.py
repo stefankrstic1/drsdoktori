@@ -24,6 +24,7 @@ class SinglePlayer(QWidget):
         self.label2.dragance = self.label1
         self.label1.bullet = self.label2
 
+
     def initPrso(self):
         self.setAttribute(QtCore.Qt.WA_StyledBackground, True)
 

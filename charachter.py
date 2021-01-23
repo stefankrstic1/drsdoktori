@@ -20,6 +20,7 @@ class Charachter(QLabel):
         self.time = time.time()
         self.isJumping = False
 
+
     def initChar(self):
         self.pix1 = QPixmap('Slike/dragan.png')
         self.setPixmap(self.pix1.scaled(100, 100))
