@@ -24,7 +24,7 @@ class Charachter(QLabel):
     def initChar(self):
         self.pix1 = QPixmap('Slike/dragan.png')
         self.setPixmap(self.pix1.scaled(100, 100))
-        self.setGeometry(200, 820, 100, 100)
+        self.setGeometry(202, 820, 100, 100)
         self.setFixedSize(100, 100)
         self.setStyleSheet("background-image: url()")
         variables.x = 200
@@ -40,7 +40,7 @@ class Charachter(QLabel):
         else:
             self.setPixmap(self.pix1.scaled(100, 100))
 
-        if variables.draganUbijen == True:
+        '''if variables.draganUbijen == True:
             variables.x = 200
             variables.y = 820
             variables.draganUbijen = False
@@ -50,7 +50,7 @@ class Charachter(QLabel):
             variables.trenutnaPozicijaEnemy = [variables.pocetnaPozicijaPrvog, variables.pocetnaPozicijaDrugog, variables.pocetnaPozicijaTreceg, variables.pocetnaPozicijaCetvrtog]
             variables.aliveEnemy = 4
             variables.deadEnemy = 0
-            variables.collectedEnemy = 0
+            variables.collectedEnemy = 0'''
 
     def __update_position__(self, key):
         if key == Qt.Key_Space:

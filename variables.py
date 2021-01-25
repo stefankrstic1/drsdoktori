@@ -12,6 +12,7 @@ y = 0
 isShot = False
 bulletX = 0
 bulletY = 0
+bulletused = False
 
 levo = True
 
@@ -40,3 +41,5 @@ deadEnemy = 0
 collectedEnemy = 0
 
 draganUbijen = False
+
+gameLive = False
