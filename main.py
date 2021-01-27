@@ -18,10 +18,13 @@ class BubbleBobble(QMainWindow, UI):
         self.btn1.clicked.connect(self.openMultiPlay)
         self.btn3.clicked.connect(self.exitoni)
 
+
+
+
     def openSinglePlay(self):
         self.StackedWidgets.setCurrentIndex(1)
         filename = 'resources/bgm/muzika.wav'
-        winsound.PlaySound(filename, winsound.SND_ASYNC)
+        #winsound.PlaySound(filename, winsound.SND_ASYNC)
         variables.gameLive = True
 
     def openMultiPlay(self):

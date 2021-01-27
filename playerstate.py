@@ -47,14 +47,8 @@ class State(QObject):
 
     def check(self):
         self.pix1 = QPixmap('Slike/dragan.png')
-        self.m = 0
+
         while not self.is_done:
-            for x in variables.CurrentPosition:
-                if((x[0] - 50 < variables.x and x[0] + 50 > variables.x) and (x[1] - 50 < variables.y and x[1] + 50 > variables.y)):
-                    variables.Pokupio[self.m] = True
-                    variables.collectedEnemy += 1
-                self.m += 1
-            self.m = 0
             if(self.isJumping == True and self.onPlatform == True):
                 while self.jumpCount < 40 and variables.y > 20:
                     #ako se pomera i levo da pomeri i tamo

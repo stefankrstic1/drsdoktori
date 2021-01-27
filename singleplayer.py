@@ -3,6 +3,8 @@ from PyQt5.QtGui import QIcon, QPixmap, QImage, QPalette, QBrush
 from PyQt5.QtCore import QSize, Qt
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys, random, variables
+from labels import Labels
+from PyQt5.QtCore import QThread, QTimer
 
 from charachter import Charachter
 from key_notifier import KeyNotifier
@@ -10,6 +12,10 @@ from bullet import Bullet
 from enemy import Enemy
 global label1
 global label2
+global labele
+
+import time
+import  threading
 
 class SinglePlayer(QWidget):
     def __init__(self):
@@ -23,7 +29,10 @@ class SinglePlayer(QWidget):
         self.initPrso()
         self.label2.dragance = self.label1
         self.label1.bullet = self.label2
+        self.labele = Labels(self)
 
+        thread = threading.Thread(target=self.poeni)
+        thread.start()
 
     def initPrso(self):
         self.setAttribute(QtCore.Qt.WA_StyledBackground, True)
@@ -43,8 +52,10 @@ class SinglePlayer(QWidget):
     def keyReleaseEvent(self, event):
         self.key_notifier.rem_key(event.key())
 
-
-
+    def poeni(self):
+        while True:
+            self.labele.changeScore(variables.points)
+            time.sleep(0.3)
 
 
 

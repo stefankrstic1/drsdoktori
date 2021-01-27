@@ -1,3 +1,5 @@
+
+
 coordinatesOfRocket1X = []
 coordinatesOfRocket1Y = []
 
@@ -43,3 +45,5 @@ collectedEnemy = 0
 draganUbijen = False
 
 gameLive = False
+
+points = 0

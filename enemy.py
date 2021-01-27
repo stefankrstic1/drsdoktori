@@ -1,9 +1,10 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIcon, QPixmap, QImage, QPalette, QBrush, QTransform
-from PyQt5.QtCore import QSize, Qt, QThread ,QTimer
-from PyQt5 import QtCore, QtGui, QtWidgets
-import sys, random, time
-import time, variables
+from PyQt5.QtCore import QSize, Qt, QThread, QTimer
+import sys
+import random
+import time
+import variables
 
 class Enemy(QLabel):
     def __init__(self, parent, koordinate, broj):
@@ -25,6 +26,11 @@ class Enemy(QLabel):
     def changePosition(self):
 
         if variables.gameLive == True:
+            if((variables.CurrentPosition[self.koji][0] - 50 < variables.x and variables.CurrentPosition[self.koji][0] + 50 > variables.x) and
+                    (variables.CurrentPosition[self.koji][1] - 50 < variables.y and variables.CurrentPosition[self.koji][1] + 50 > variables.y) and variables.Pokupio[self.koji]==False):
+                variables.Pokupio[self.koji] = True
+                variables.collectedEnemy += 1
+                variables.points+=1
             if variables.Pogodjen[self.koji] == True:
                 self.pix1 = QPixmap('Slike/krepo.png')
                 self.setPixmap(self.pix1.scaled(100, 100))
@@ -46,7 +52,7 @@ class Enemy(QLabel):
                     variables.CurrentPosition[self.koji][0] = self.pozicija.x()
                     variables.CurrentPosition[self.koji][1] = self.pozicija.y()
                     variables.bulletused = True
-
+                    variables.points += 1
 
             if variables.Pogodjen[self.koji] == False:
                 if (self.pozicija.x() - 50 < variables.x and self.pozicija.x() + 50 > variables.x) and (self.pozicija.y() - 50 < variables.y and self.pozicija.y() + 50 > variables.y):
