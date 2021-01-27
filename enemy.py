@@ -7,8 +7,9 @@ import time
 import variables
 
 class Enemy(QLabel):
-    def __init__(self, parent, koordinate, broj):
+    def __init__(self, parent, koordinate, broj, dragance):
         QLabel.__init__(self, parent)
+        self.dragan = dragance
         self.isHit = False
         self.init(koordinate[0], koordinate[1])
         self.koji = broj
@@ -87,6 +88,7 @@ class Enemy(QLabel):
                 variables.aliveEnemy = 4
                 variables.deadEnemy = 0
                 variables.collectedEnemy = 0
+                self.neSkaciKonju = True
 
             self.setGeometry(variables.trenutnaPozicijaEnemy[self.koji][0],
                              variables.trenutnaPozicijaEnemy[self.koji][1], 100, 100)
@@ -107,5 +109,5 @@ class Enemy(QLabel):
                 variables.aliveEnemy = 4
                 variables.deadEnemy = 0
                 variables.collectedEnemy = 0
-
                 variables.increaseLevel = True
+                self.neSkaciKonju = True

@@ -6,7 +6,7 @@ import time
 
 import variables
 
-Platforms = [[820, 55, 1120], [640, 110, 250], [640, 525, 675], [640, 940, 1080],
+Platforms = [[820, 0, 1280], [640, 110, 250], [640, 525, 675], [640, 940, 1080],
              [455, 235, 945], [270, 105, 255], [270, 525, 675], [270, 940, 1080],
              [85, 250, 395], [85, 805, 949]]
 
@@ -28,6 +28,7 @@ class State(QObject):
         self.moveToThread(self.thread)
         self.pix1 = QPixmap('Slike/dragan.png')
         self.thread.started.connect(self.check)
+        self.neSkaciKonju = False
         #self.checkOnPlatform()
 
     def start(self):
@@ -36,7 +37,7 @@ class State(QObject):
     def checkOnPlatform(self):
         self.rec1 = [variables.x, variables.y]
         for x in Platforms:
-            if(self.rec1[1] == x[0] and self.rec1[0] > x[1] and self.rec1[0] < x[2]):
+            if(self.rec1[1] < x[0] + 30 and self.rec1[1] > x[0] and self.rec1[0] > x[1] and self.rec1[0] < x[2]):
                 self.onPlatform = True
                 self.isFalling = False
                 break
@@ -54,14 +55,19 @@ class State(QObject):
                     #ako se pomera i levo da pomeri i tamo
                     if(self.movingLeft == True and variables.x > 65):
                         variables.levo = True
-                        variables.x -= 5
+                        variables.x -= 5 + variables.level - 1
                         self.movingLeft = False
                     #ako se pomera i desno da pomeri i tamo
                     if(self.movingRight == True and variables.x < 1115):
                         variables.levo = False
-                        variables.x +=5
+                        variables.x += 5 + variables.level - 1
                         self.movingRight = False
-                    variables.y -= 5
+                    if (self.neSkaciKonju == True):
+                        self.onPlatform = True
+                        self.isJumping = False
+                        self.isFalling = False
+                        break
+                    variables.y -= 5 + variables.level / 2 - 1
                     self.jumpCount += 1
                     self.thread.msleep(1)
                 self.isJumping = False
@@ -72,30 +78,37 @@ class State(QObject):
                 while self.onPlatform == False:
                     if (self.movingLeft == True and variables.x > 65):
                         variables.levo = True
-                        variables.x -= 5
+                        variables.x -= 5 + variables.level - 1
                         self.movingLeft = False
                         # ako se pomera i desno da pomeri i tamo
                     if (self.movingRight == True and variables.x < 1115):
                         variables.levo = False
-                        variables.x += 5
+                        variables.x += 5 + variables.level - 1
                         self.movingRight = False
-                    variables.y += 5
+                    if(self.neSkaciKonju == True):
+                        self.onPlatform = True
+                        self.isJumping = False
+                        self.isFalling = False
+                        break
+                    variables.y += 5 + variables.level / 2 - 1
                     self.thread.msleep(1)
                     self.checkOnPlatform()
                 self.isFalling = False
             elif (self.onPlatform == True and self.movingRight == True and variables.x < 1115):
                 variables.levo = False
-                variables.x += 5
+                variables.x += 5 + variables.level - 1
                 self.checkOnPlatform()
                 self.movingRight = False
 
             elif (self.onPlatform == True and self.movingLeft == True and variables.x > 65):
                 variables.levo = True
-                variables.x -= 5
+                variables.x -= 5 + variables.level - 1
                 self.checkOnPlatform()
                 self.movingLeft = False
             #self.dragance.update()
             time.sleep(0.01)
+
+
 
 
     def kill(self):
