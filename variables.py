@@ -47,3 +47,11 @@ draganUbijen = False
 gameLive = False
 
 points = 0
+
+takeLife = False
+
+gameOver = False
+
+level = 1
+
+increaseLevel = False

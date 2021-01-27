@@ -55,8 +55,14 @@ class SinglePlayer(QWidget):
     def poeni(self):
         while True:
             self.labele.changeScore(variables.points)
+            if variables.takeLife:
+                self.labele.changeLives()
+                variables.takeLife = False
+                variables.gameOver = True
+            if variables.increaseLevel:
+                self.labele.changeLevel()
+                variables.increaseLevel = False
+                variables.level+=1
             time.sleep(0.3)
-
-
 
 

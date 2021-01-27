@@ -57,18 +57,19 @@ class Enemy(QLabel):
             if variables.Pogodjen[self.koji] == False:
                 if (self.pozicija.x() - 50 < variables.x and self.pozicija.x() + 50 > variables.x) and (self.pozicija.y() - 50 < variables.y and self.pozicija.y() + 50 > variables.y):
                     variables.draganUbijen = True
+                    variables.takeLife = True
 
             if variables.Pogodjen[self.koji] == False and variables.draganUbijen == False:
                 if variables.x > variables.trenutnaPozicijaEnemy[self.koji][0]:
-                    variables.trenutnaPozicijaEnemy[self.koji][0] += 4
+                    variables.trenutnaPozicijaEnemy[self.koji][0] += 4 + variables.level-1
 
                 elif variables.x < variables.trenutnaPozicijaEnemy[self.koji][0]:
-                    variables.trenutnaPozicijaEnemy[self.koji][0] -= 4
+                    variables.trenutnaPozicijaEnemy[self.koji][0] -= 4 + variables.level-1
 
                 if variables.y > variables.trenutnaPozicijaEnemy[self.koji][1]:
-                    variables.trenutnaPozicijaEnemy[self.koji][1] += 3
+                    variables.trenutnaPozicijaEnemy[self.koji][1] += 3 + variables.level-1
                 else:
-                    variables.trenutnaPozicijaEnemy[self.koji][1] -= 3
+                    variables.trenutnaPozicijaEnemy[self.koji][1] -= 3 + variables.level-1
 
             if variables.draganUbijen == True:
                 self.setVisible(True)
@@ -89,3 +90,22 @@ class Enemy(QLabel):
 
             self.setGeometry(variables.trenutnaPozicijaEnemy[self.koji][0],
                              variables.trenutnaPozicijaEnemy[self.koji][1], 100, 100)
+
+            if variables.collectedEnemy == 4:
+                self.setVisible(True)
+                variables.x = 200
+                variables.y = 820
+                variables.draganUbijen = False
+                variables.Pogodjen = [False, False, False, False]
+                variables.Pokupio = [False, False, False, False]
+                variables.CurrentPosition = [[0, 0], [0, 0], [0, 0], [0, 0]]
+                variables.trenutnaPozicijaEnemy = [600, 450], [600, 260], [300, 80], [900, 80]
+                variables.pocetnaPozicijaPrvog = [600, 450]
+                variables.pocetnaPozicijaDrugog = [600, 260]
+                variables.pocetnaPozicijaTreceg = [300, 80]
+                variables.pocetnaPozicijaCetvrtog = [900, 80]
+                variables.aliveEnemy = 4
+                variables.deadEnemy = 0
+                variables.collectedEnemy = 0
+
+                variables.increaseLevel = True
