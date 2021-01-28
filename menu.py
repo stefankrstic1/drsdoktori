@@ -34,21 +34,24 @@ class UI(QtWidgets.QWidget):
 
         layout = QVBoxLayout()
 
-        oImage = QImage("Slike/pozadina.jpg")
+        oImage = QImage("Slike/pozadina.png")
         sImage = oImage.scaled(QSize(1280, 960))  # resize Image to widgets size
         palette = QPalette()
         palette.setBrush(QPalette.Window, QBrush(sImage))
         self.setPalette(palette)
 
-        self.btn = QPushButton('SINGLEPLAYER',self.stack1)
-        self.btn1 = QPushButton('MULTIPLAYER', self.stack1)
-        self.btn2 = QPushButton('OPTIONS', self.stack1)
-        self.btn3 = QPushButton('EXIT', self.stack1)
+        self.btn = QPushButton(self.stack1)
+        self.btn1 = QPushButton(self.stack1)
+        self.btn2 = QPushButton( self.stack1)
+        self.btn3 = QPushButton(self.stack1)
 
 
 
         #promeniti sliku za dugme!!!!!!!!!!!!
-        self.btn.setStyleSheet("border-image: url(dugme1.png)")
+        self.btn.setStyleSheet("border-image: url(Slike/singleplayer.png)")
+        self.btn1.setStyleSheet("border-image: url(Slike/multiplayer.png)")
+        self.btn2.setStyleSheet("border-image: url(Slike/options.png)")
+        self.btn3.setStyleSheet("border-image: url(Slike/exit.png)")
 
         self.btn.setFixedSize(200, 80)
         self.btn1.setFixedSize(200, 80)

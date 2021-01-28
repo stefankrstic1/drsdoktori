@@ -12,19 +12,19 @@ class ReturnScreen(QWidget):
         self.init()
 
     def init(self):
-        self.setFixedSize(600, 400)
+        self.setFixedSize(1280, 960)
 
         layout = QVBoxLayout()
 
         self.setStyleSheet("background-image: url(Slike/gameOverScreen.jpg)")
 
-        self.btn = QPushButton('Return', self)
+        self.btn = QPushButton(self)
 
         layout.addWidget(self.btn)
 
         self.setLayout(layout)
         self.btn.clicked.connect(self.returnToMenu)
-        self.btn.setFixedSize(600, 400)
+        self.btn.setFixedSize(1280, 960)
 
         self.setLayout(layout)
 
