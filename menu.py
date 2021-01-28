@@ -5,6 +5,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import sys, random
 
 from singleplayer import SinglePlayer
+from ReturnScreen import ReturnScreen
 
 class UI(QtWidgets.QWidget):
 
@@ -14,15 +15,19 @@ class UI(QtWidgets.QWidget):
         self.stack1 = QWidget()
         self.stack2 = QWidget()
         self.stack3 = QWidget()
+        self.stack4 = QWidget()
 
-        stack2 = SinglePlayer()
+        self.stack2 = SinglePlayer()
         self.MenuUI()
 
         self.MultiplayerUI()
 
+        self.stack4 = ReturnScreen(self.StackedWidgets)
+
         self.StackedWidgets.addWidget(self.stack1)
-        self.StackedWidgets.addWidget(stack2)
+        self.StackedWidgets.addWidget(self.stack2)
         self.StackedWidgets.addWidget(self.stack3)
+        self.StackedWidgets.addWidget(self.stack4)
 
     def MenuUI(self):
         self.stack1.setFixedSize(1280, 960)

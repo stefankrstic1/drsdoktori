@@ -11,6 +11,7 @@ class Enemy(QLabel):
         QLabel.__init__(self, parent)
         self.dragan = dragance
         self.isHit = False
+        variables.trenutnaPozicijaEnemy[broj] = koordinate
         self.init(koordinate[0], koordinate[1])
         self.koji = broj
 
@@ -62,15 +63,15 @@ class Enemy(QLabel):
 
             if variables.Pogodjen[self.koji] == False and variables.draganUbijen == False:
                 if variables.x > variables.trenutnaPozicijaEnemy[self.koji][0]:
-                    variables.trenutnaPozicijaEnemy[self.koji][0] += 4 + variables.level-1
+                    variables.trenutnaPozicijaEnemy[self.koji][0] += 4 + variables.level / 2
 
                 elif variables.x < variables.trenutnaPozicijaEnemy[self.koji][0]:
-                    variables.trenutnaPozicijaEnemy[self.koji][0] -= 4 + variables.level-1
+                    variables.trenutnaPozicijaEnemy[self.koji][0] -= 4 + variables.level / 2
 
                 if variables.y > variables.trenutnaPozicijaEnemy[self.koji][1]:
-                    variables.trenutnaPozicijaEnemy[self.koji][1] += 3 + variables.level-1
+                    variables.trenutnaPozicijaEnemy[self.koji][1] += 3 + variables.level / 2
                 else:
-                    variables.trenutnaPozicijaEnemy[self.koji][1] -= 3 + variables.level-1
+                    variables.trenutnaPozicijaEnemy[self.koji][1] -= 3 + variables.level / 2
 
             if variables.draganUbijen == True:
                 self.setVisible(True)
@@ -80,11 +81,10 @@ class Enemy(QLabel):
                 variables.Pogodjen = [False, False, False, False]
                 variables.Pokupio = [False, False, False, False]
                 variables.CurrentPosition = [[0, 0], [0, 0], [0, 0], [0, 0]]
-                variables.trenutnaPozicijaEnemy = [600, 450], [600, 260], [300, 80], [900, 80]
-                variables.pocetnaPozicijaPrvog = [600, 450]
-                variables.pocetnaPozicijaDrugog = [600, 260]
-                variables.pocetnaPozicijaTreceg = [300, 80]
-                variables.pocetnaPozicijaCetvrtog = [900, 80]
+                variables.trenutnaPozicijaEnemy = [random.randrange(100, 1000, 10), random.randrange(100, 500, 10)], \
+                                                  [random.randrange(100, 1000, 10), random.randrange(100, 500, 10)], \
+                                                  [random.randrange(100, 1000, 10), random.randrange(100, 500, 10)], \
+                                                  [random.randrange(100, 1000, 10), random.randrange(100, 500, 10)]
                 variables.aliveEnemy = 4
                 variables.deadEnemy = 0
                 variables.collectedEnemy = 0
@@ -101,11 +101,10 @@ class Enemy(QLabel):
                 variables.Pogodjen = [False, False, False, False]
                 variables.Pokupio = [False, False, False, False]
                 variables.CurrentPosition = [[0, 0], [0, 0], [0, 0], [0, 0]]
-                variables.trenutnaPozicijaEnemy = [600, 450], [600, 260], [300, 80], [900, 80]
-                variables.pocetnaPozicijaPrvog = [600, 450]
-                variables.pocetnaPozicijaDrugog = [600, 260]
-                variables.pocetnaPozicijaTreceg = [300, 80]
-                variables.pocetnaPozicijaCetvrtog = [900, 80]
+                variables.trenutnaPozicijaEnemy = [random.randrange(100, 1000, 10), random.randrange(100, 500, 10)], \
+                                                  [random.randrange(100, 1000, 10), random.randrange(100, 500, 10)], \
+                                                  [random.randrange(100, 1000, 10), random.randrange(100, 500, 10)], \
+                                                  [random.randrange(100, 1000, 10), random.randrange(100, 500, 10)]
                 variables.aliveEnemy = 4
                 variables.deadEnemy = 0
                 variables.collectedEnemy = 0

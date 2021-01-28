@@ -55,19 +55,19 @@ class State(QObject):
                     #ako se pomera i levo da pomeri i tamo
                     if(self.movingLeft == True and variables.x > 65):
                         variables.levo = True
-                        variables.x -= 5 + variables.level - 1
+                        variables.x -= 5 + variables.level / 2
                         self.movingLeft = False
                     #ako se pomera i desno da pomeri i tamo
                     if(self.movingRight == True and variables.x < 1115):
                         variables.levo = False
-                        variables.x += 5 + variables.level - 1
+                        variables.x += 5 + variables.level / 2
                         self.movingRight = False
                     if (self.neSkaciKonju == True):
                         self.onPlatform = True
                         self.isJumping = False
                         self.isFalling = False
                         break
-                    variables.y -= 5 + variables.level / 2 - 1
+                    variables.y -= 5
                     self.jumpCount += 1
                     self.thread.msleep(1)
                 self.isJumping = False
@@ -78,38 +78,35 @@ class State(QObject):
                 while self.onPlatform == False:
                     if (self.movingLeft == True and variables.x > 65):
                         variables.levo = True
-                        variables.x -= 5 + variables.level - 1
+                        variables.x -= 5 + variables.level / 2
                         self.movingLeft = False
                         # ako se pomera i desno da pomeri i tamo
                     if (self.movingRight == True and variables.x < 1115):
                         variables.levo = False
-                        variables.x += 5 + variables.level - 1
+                        variables.x += 5 + variables.level / 2
                         self.movingRight = False
                     if(self.neSkaciKonju == True):
                         self.onPlatform = True
                         self.isJumping = False
                         self.isFalling = False
                         break
-                    variables.y += 5 + variables.level / 2 - 1
+                    variables.y += 5
                     self.thread.msleep(1)
                     self.checkOnPlatform()
                 self.isFalling = False
             elif (self.onPlatform == True and self.movingRight == True and variables.x < 1115):
                 variables.levo = False
-                variables.x += 5 + variables.level - 1
+                variables.x += 5 + variables.level / 2
                 self.checkOnPlatform()
                 self.movingRight = False
 
             elif (self.onPlatform == True and self.movingLeft == True and variables.x > 65):
                 variables.levo = True
-                variables.x -= 5 + variables.level - 1
+                variables.x -= 5 + variables.level / 2
                 self.checkOnPlatform()
                 self.movingLeft = False
             #self.dragance.update()
             time.sleep(0.01)
-
-
-
 
     def kill(self):
         self.is_done = True

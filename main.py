@@ -4,7 +4,7 @@ from PyQt5.QtCore import QSize
 from PyQt5 import QtCore, QtGui
 import sys, random
 import winsound
-import sys, random, variables
+import sys, random, variables, os
 
 from menu import UI
 
@@ -18,20 +18,18 @@ class BubbleBobble(QMainWindow, UI):
         self.btn1.clicked.connect(self.openMultiPlay)
         self.btn3.clicked.connect(self.exitoni)
 
-
-
-
     def openSinglePlay(self):
         self.StackedWidgets.setCurrentIndex(1)
         filename = 'resources/bgm/muzika.wav'
         #winsound.PlaySound(filename, winsound.SND_ASYNC)
+        variables.lives = 3
         variables.gameLive = True
 
     def openMultiPlay(self):
         self.StackedWidgets.setCurrentIndex(2)
 
     def exitoni(self):
-        sys.exit()
+        os._exit(0)
 
     def initUI(self):
         self.setGeometry(0, 0, 1280, 960)

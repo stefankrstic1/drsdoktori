@@ -22,10 +22,11 @@ class SinglePlayer(QWidget):
         super().__init__()
         self.label1 = Charachter(self)
         self.label2 = Bullet(self)
-        self.enemyLabel1 = Enemy(self, variables.pocetnaPozicijaPrvog, 0, self.label1)
-        self.enemyLabel2 = Enemy(self, variables.pocetnaPozicijaDrugog, 1, self.label1)
-        self.enemyLabel3 = Enemy(self, variables.pocetnaPozicijaTreceg, 2, self.label1)
-        self.enemyLabel4 = Enemy(self, variables.pocetnaPozicijaCetvrtog, 3, self.label1)
+
+        self.enemyLabel1 = Enemy(self, [random.randrange(100, 1000, 10), random.randrange(100, 500, 10)], 0, self.label1)
+        self.enemyLabel2 = Enemy(self, [random.randrange(100, 1000, 10), random.randrange(100, 500, 10)], 1, self.label1)
+        self.enemyLabel3 = Enemy(self, [random.randrange(100, 1000, 10), random.randrange(100, 500, 10)], 2, self.label1)
+        self.enemyLabel4 = Enemy(self, [random.randrange(100, 1000, 10), random.randrange(100, 500, 10)], 3, self.label1)
         self.initPrso()
         self.label2.dragance = self.label1
         self.label1.bullet = self.label2
@@ -55,10 +56,16 @@ class SinglePlayer(QWidget):
     def poeni(self):
         while True:
             self.labele.changeScore(variables.points)
+            if variables.reset == True:
+                self.labele.resetAll()
+                variables.reset = False
+                variables.points = 0
             if variables.takeLife:
                 self.labele.changeLives()
                 variables.takeLife = False
-                variables.gameOver = True
+                if (variables.lives == 0):
+                    variables.gameOver = True
+                variables.lives -= 1
             if variables.increaseLevel:
                 self.labele.changeLevel()
                 variables.increaseLevel = False

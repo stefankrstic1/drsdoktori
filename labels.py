@@ -69,6 +69,14 @@ class Labels:
         self.label_6.setObjectName("label5")
         self.label_6.setNum(self.level)
 
+    def resetAll(self):
+        self.points = 0
+        self.lives = 3
+        self.level = 1
+        self.label_2.setNum(self.points)
+        self.label_4.setNum(self.lives)
+        self.label_6.setNum(self.level)
+
     def changeScore(self, pts):
         self.points = pts
         self.label_2.setNum(self.points)
