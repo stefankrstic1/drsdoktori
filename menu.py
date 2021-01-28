@@ -6,6 +6,7 @@ import sys, random
 
 from singleplayer import SinglePlayer
 from ReturnScreen import ReturnScreen
+from multiplayer import MultiPlayer
 
 class UI(QtWidgets.QWidget):
 
@@ -20,7 +21,7 @@ class UI(QtWidgets.QWidget):
         self.stack2 = SinglePlayer()
         self.MenuUI()
 
-        self.MultiplayerUI()
+        self.stack3 = MultiPlayer()
 
         self.stack4 = ReturnScreen(self.StackedWidgets)
 
@@ -64,9 +65,6 @@ class UI(QtWidgets.QWidget):
         layout.setAlignment(QtCore.Qt.AlignCenter)
 
         self.stack1.setLayout(layout)
-
-    def MultiplayerUI(self):
-        self.stack3.setStyleSheet("background: blue")
 
     def center(self):
         screen = QDesktopWidget().screenGeometry()

@@ -37,6 +37,9 @@ class ReturnScreen(QWidget):
                 self.sw.setCurrentIndex(3)
                 variables.gameOver = False
                 variables.gameLive = False
+                variables.gameMultiLive = False
+                variables.draganUbijen2 = False
+                variables.draganUbijen = False
                 variables.reset = True
             time.sleep(0.3)
 

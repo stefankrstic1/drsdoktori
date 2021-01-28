@@ -20,17 +20,17 @@ import  threading
 class SinglePlayer(QWidget):
     def __init__(self):
         super().__init__()
-        self.label1 = Charachter(self)
-        self.label2 = Bullet(self)
+        self.label1 = Charachter(self, 0)
+        self.label2 = Bullet(self, 0)
 
-        self.enemyLabel1 = Enemy(self, [random.randrange(100, 1000, 10), random.randrange(100, 500, 10)], 0, self.label1)
-        self.enemyLabel2 = Enemy(self, [random.randrange(100, 1000, 10), random.randrange(100, 500, 10)], 1, self.label1)
-        self.enemyLabel3 = Enemy(self, [random.randrange(100, 1000, 10), random.randrange(100, 500, 10)], 2, self.label1)
-        self.enemyLabel4 = Enemy(self, [random.randrange(100, 1000, 10), random.randrange(100, 500, 10)], 3, self.label1)
+        self.enemyLabel1 = Enemy(self, [random.randrange(100, 1000, 10), random.randrange(100, 500, 10)], 0, self.label1, 0)
+        self.enemyLabel2 = Enemy(self, [random.randrange(100, 1000, 10), random.randrange(100, 500, 10)], 1, self.label1, 0)
+        self.enemyLabel3 = Enemy(self, [random.randrange(100, 1000, 10), random.randrange(100, 500, 10)], 2, self.label1, 0)
+        self.enemyLabel4 = Enemy(self, [random.randrange(100, 1000, 10), random.randrange(100, 500, 10)], 3, self.label1, 0)
         self.initPrso()
         self.label2.dragance = self.label1
         self.label1.bullet = self.label2
-        self.labele = Labels(self)
+        self.labele = Labels(self, 0)
 
         thread = threading.Thread(target=self.poeni)
         thread.start()
@@ -55,21 +55,22 @@ class SinglePlayer(QWidget):
 
     def poeni(self):
         while True:
-            self.labele.changeScore(variables.points)
-            if variables.reset == True:
-                self.labele.resetAll()
-                variables.reset = False
-                variables.points = 0
-            if variables.takeLife:
-                self.labele.changeLives()
-                variables.takeLife = False
-                if (variables.lives == 0):
-                    variables.gameOver = True
-                variables.lives -= 1
-            if variables.increaseLevel:
-                self.labele.changeLevel()
-                variables.increaseLevel = False
-                variables.level+=1
+            if variables.gameLive == True:
+                self.labele.changeScore(variables.points)
+                if variables.reset == True:
+                    self.labele.resetAll1()
+                    variables.reset = False
+                    variables.points = 0
+                if variables.takeLife:
+                    self.labele.changeLives()
+                    variables.takeLife = False
+                    if (variables.lives == 0):
+                        variables.gameOver = True
+                    variables.lives -= 1
+                if variables.increaseLevel:
+                    self.labele.changeLevel()
+                    variables.increaseLevel = False
+                    variables.level+=1
             time.sleep(0.3)
 
 

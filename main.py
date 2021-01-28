@@ -20,21 +20,26 @@ class BubbleBobble(QMainWindow, UI):
 
     def openSinglePlay(self):
         self.StackedWidgets.setCurrentIndex(1)
-        filename = 'resources/bgm/muzika.wav'
-        #winsound.PlaySound(filename, winsound.SND_ASYNC)
+        filename = 'resources/bgm/game.wav'
+        winsound.PlaySound(filename, winsound.SND_ASYNC)
         variables.lives = 3
         variables.gameLive = True
 
     def openMultiPlay(self):
         self.StackedWidgets.setCurrentIndex(2)
+        filename = 'resources/bgm/game.wav'
+        winsound.PlaySound(filename, winsound.SND_ASYNC)
+        variables.lives = 3
+        variables.lives2 = 3
+        variables.gameMultiLive = True
 
     def exitoni(self):
         os._exit(0)
 
     def initUI(self):
         self.setGeometry(0, 0, 1280, 960)
-        self.setWindowTitle('Slike/BubbleBobble')
-        self.setWindowIcon(QIcon('bb.jpg'))
+        self.setWindowTitle('BubbleBobble')
+        self.setWindowIcon(QIcon('Slike/bb.jpg'))
         self.setFixedSize(1280,960)
         self.setCentralWidget(self.StackedWidgets)
         UI.center(self)
